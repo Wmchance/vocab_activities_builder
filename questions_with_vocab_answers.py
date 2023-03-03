@@ -7,13 +7,13 @@ from word_lists import *
 openai.api_key = OPENAI_API_KEY
 
 # move this to word_list.py & add one for each unit/lesson
-l2_u1_str = ', '.join(level_2_unit1_word_list)
-print(l2_u1_str)
+word_str = ', '.join(l2_u1_l1_list)
+print(word_str)
 
 response = openai.Completion.create(
     model="text-davinci-003", 
     prompt=f'''
-        Make a word bank for the following words: "admire, adopt, focus, stepmother". 
+        Make a word bank for the following words: "{word_str}". 
         Write instructions asking the students to write an answer for each of the questions. 
         Tell the students that they should use the words from the word bank in their answers.
         Write an open-ended question for each word in the word bank. 

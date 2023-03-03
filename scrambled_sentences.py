@@ -13,12 +13,12 @@ print(word_str)
 response = openai.Completion.create(
     model="text-davinci-003", 
     prompt=f'''
-        Write an individual sentence for each of the following words: "{word_str}". 
-        Create a blank space where the above given words should go so that students can fill them in.
-        Present the  sentences in a numbered bullet format.
-        Make the sentences appropriate for CEFR A2 level students.
+        Generate one sentence for each of the following words: "{word_str}". 
+        The sentences should be appropriate for CEFR A2 level students.
+        Write the sentences in a numbered bullet format.
+        Write instructions telling students to rewrite the sentences in the correct order.
         ''', 
-    temperature=.7, 
+    temperature=.3, 
     max_tokens=2000
     )
 
