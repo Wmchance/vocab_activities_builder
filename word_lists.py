@@ -60,7 +60,7 @@ l2_u12_l2_list = []
 l2_u12_l3_list = []
 l2_u12_l4_list = []
 
-csv_from_book = 'SYM_2_WordList.csv' # movie this & function call to main app file
+# csv_from_book = 'SYM_2_WordList.csv' # movie this & function call to main app file
 
 def generate_word_lists(csv_from_book):
     with open(csv_from_book) as level_2_word_list_csv:
@@ -175,7 +175,5 @@ def generate_word_lists(csv_from_book):
                     l2_u12_l3_list.append(row[2])
                 elif row[1] == '4':
                     l2_u12_l4_list.append(row[2])
-        
+   
 
-
-generate_word_lists(csv_from_book)

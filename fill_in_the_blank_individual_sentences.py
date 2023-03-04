@@ -1,30 +1,25 @@
 import os
 import openai
-from env_variable import OPENAI_API_KEY
-from word_lists import *
 
-# Load your API key from an environment variable or secret management service
-openai.api_key = OPENAI_API_KEY
+def fill_in_the_blank_individual_sentences(OPENAI_API_KEY, word_str):
 
-# move this to word_list.py & add one for each unit/lesson
-word_str = ', '.join(l2_u1_l1_list)
-print(word_str)
+    openai.api_key = OPENAI_API_KEY
 
-response = openai.Completion.create(
-    model="text-davinci-003", 
-    prompt=f'''
-        Write an individual sentence for each of the following words: "{word_str}". 
-        Create a blank space where the above given words should go so that students can fill them in.
-        Present the  sentences in a numbered bullet format.
-        Make the sentences appropriate for CEFR A2 level students.
-        ''', 
-    temperature=.7, 
-    max_tokens=2000
-    )
+    response = openai.Completion.create(
+        model="text-davinci-003", 
+        prompt=f'''
+            Write an individual sentence for each of the following words: "{word_str}". 
+            Create a blank space where the above given words should go so that students can fill them in.
+            Present the  sentences in a numbered bullet format.
+            Make the sentences appropriate for CEFR A2 level students.
+            ''', 
+        temperature=.7, 
+        max_tokens=2000
+        )
 
-response_text = response.choices[0]['text']
+    response_text = response.choices[0]['text']
 
-# add spaces blanks to text manually so that ChatGPT is relied on for this part
-# add a word bank
+    # add spaces blanks to text manually so that ChatGPT is relied on for this part
+    # add a word bank
 
-print(response_text)
+    return response_text

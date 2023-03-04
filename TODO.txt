@@ -1,0 +1,1 @@
+set word lists to strings in it's own function
