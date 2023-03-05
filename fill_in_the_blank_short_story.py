@@ -28,3 +28,7 @@ response_text = response.choices[0]['text']
 # add a word bank
 
 print(response_text)
+
+with open('myfile.txt', 'w') as fp:
+    pass
+    fp.write(response_text)

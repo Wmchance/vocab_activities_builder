@@ -29,3 +29,7 @@ response = openai.Completion.create(
 response_text = response.choices[0]['text']
 
 print(response_text)
+
+with open('myfile.txt', 'w') as fp:
+    pass
+    fp.write(response_text)

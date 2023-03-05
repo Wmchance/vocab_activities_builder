@@ -26,7 +26,7 @@ class Pymodoro:
 
     def build_grid(self):
         self.mainframe.columnconfigure(0, weight=1) #sets one column for the frame(mainframe) & lets it expand
-        # sets 3 rows for mainframe. rows 0 & 2 expand, row 1 doesn't
+        # sets 3 rows for mainframe. rows 0 & 2  don't expand, row 1 does
         self.mainframe.rowconfigure(0, weight=0) 
         self.mainframe.rowconfigure(1, weight=1)
         self.mainframe.rowconfigure(2, weight=0)
