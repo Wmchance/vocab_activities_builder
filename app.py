@@ -17,7 +17,7 @@ class WS_builder:
         self.mainframe = tkinter.Frame(self.master, bg='white')
         self.mainframe.pack(fill=tkinter.BOTH, expand=True)
 
-        # build all the parts of the apps display comment 
+        # build all the parts of the apps display
         self.build_grid()
         self.build_banner()
         self.build_instructions()
