@@ -1,4 +1,5 @@
 import tkinter
+from tkinter import *
 
 from env_variable import OPENAI_API_KEY
 from word_lists import *
@@ -18,6 +19,7 @@ class WS_builder:
         self.build_listboxes()
         self.build_create_labels()
         self.build_create_section()
+        self.display_row()
 
     def build_grid(self):
         self.mainframe.columnconfigure(0, weight=1)
@@ -27,6 +29,7 @@ class WS_builder:
         self.mainframe.rowconfigure(3, weight=0)
         self.mainframe.rowconfigure(4, weight=0)
         self.mainframe.rowconfigure(5, weight=0)
+        self.mainframe.rowconfigure(6, weight=0)
 
     def build_banner(self):
         # sets what the banner displays 
@@ -222,6 +225,23 @@ class WS_builder:
         # set grid location (within create_frame) of button & entry
         self.create_button.grid(row=0, column=2, sticky='ew')
         self.create_entry.grid(row=0, column=0, sticky='ew')
+
+    def display_row(self):
+        # sets what the display area displays 
+        disp = tkinter.Label(
+            self.mainframe, # says the frame to which it belongs, the mainframe in this case
+            bg='white',
+            fg='black',
+            text='disp area',
+            font=('Helvetica, 15'),
+            justify= 'left'
+        )
+        # sets the location of the instructions in the mainframe & how it is positioned. 
+        disp.grid(
+            row=6, column=0,
+            sticky='w', # Stuck to the east 'e' & west 'w' sides of the screen
+            padx=5, pady=5 # sets the padding
+        )
 
 
 if __name__ == '__main__':
