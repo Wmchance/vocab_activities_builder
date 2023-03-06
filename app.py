@@ -19,8 +19,9 @@ class WS_builder:
         self.build_listboxes()
         self.build_create_labels()
         self.build_create_section()
+        self.vars()
         self.display_row()
-
+    
     def build_grid(self):
         self.mainframe.columnconfigure(0, weight=1)
         self.mainframe.rowconfigure(0, weight=0)
@@ -31,6 +32,9 @@ class WS_builder:
         self.mainframe.rowconfigure(5, weight=0)
         self.mainframe.rowconfigure(6, weight=0)
 
+    def vars(self):
+        self.var = StringVar()
+    
     def build_banner(self):
         # sets what the banner displays 
         banner = tkinter.Label(
@@ -218,8 +222,8 @@ class WS_builder:
         # make a create button
         self.create_button = tkinter.Button(
             create_frame, # belongs to create_frame
-            text='Create'
-            # command=self.start_timer
+            text='Create',
+            command= self.showSelected
         )
 
         # set grid location (within create_frame) of button & entry
@@ -232,7 +236,7 @@ class WS_builder:
             self.mainframe, # says the frame to which it belongs, the mainframe in this case
             bg='white',
             fg='black',
-            text='disp area',
+            textvariable=self.var,
             font=('Helvetica, 15'),
             justify= 'left'
         )
@@ -242,6 +246,10 @@ class WS_builder:
             sticky='w', # Stuck to the east 'e' & west 'w' sides of the screen
             padx=5, pady=5 # sets the padding
         )
+
+    def showSelected(self):
+        itm = self.unit_listbox.get(self.unit_listbox.curselection())
+        self.var.set(itm)
 
 
 if __name__ == '__main__':
