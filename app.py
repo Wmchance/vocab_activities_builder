@@ -33,7 +33,9 @@ class WS_builder:
         self.mainframe.rowconfigure(6, weight=0)
 
     def vars(self):
-        self.var = StringVar()
+        self.unit_var = StringVar()
+        self.lesson_var = StringVar()
+        self.activity_var = StringVar()
     
     def build_banner(self):
         # sets what the banner displays 
@@ -223,20 +225,21 @@ class WS_builder:
         self.create_button = tkinter.Button(
             create_frame, # belongs to create_frame
             text='Create',
-            command= self.showSelected
+            command= self.show_selected
         )
 
         # set grid location (within create_frame) of button & entry
         self.create_button.grid(row=0, column=2, sticky='ew')
         self.create_entry.grid(row=0, column=0, sticky='ew')
 
+    # Temp row display to check vars are coming through correctly - TO BE DELETED
     def display_row(self):
         # sets what the display area displays 
         disp = tkinter.Label(
             self.mainframe, # says the frame to which it belongs, the mainframe in this case
             bg='white',
             fg='black',
-            textvariable=self.var,
+            textvariable= self.activity_var,
             font=('Helvetica, 15'),
             justify= 'left'
         )
@@ -247,9 +250,18 @@ class WS_builder:
             padx=5, pady=5 # sets the padding
         )
 
-    def showSelected(self):
-        itm = self.unit_listbox.get(self.unit_listbox.curselection())
-        self.var.set(itm)
+    def show_selected(self):
+        # Unit selection var
+        unit_itm = self.unit_listbox.get(self.unit_listbox.curselection())
+        self.unit_var.set(unit_itm)
+
+        # Lesson selection var
+        lesson_itm = self.lesson_listbox.get(self.lesson_listbox.curselection())
+        self.lesson_var.set(lesson_itm)
+
+        # Activity selection var
+        activity_itm = self.activity_listbox.get(self.activity_listbox.curselection())
+        self.activity_var.set(activity_itm)
 
 
 if __name__ == '__main__':
