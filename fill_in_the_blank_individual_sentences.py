@@ -22,8 +22,8 @@ def fill_in_the_blank_individual_sentences(OPENAI_API_KEY, word_str):
     # add spaces blanks to text manually so that ChatGPT is relied on for this part
     # add a word bank
 
-    # return response_text
-
     with open('myfile.txt', 'a') as fp:
         pass
+        fp.write("Fill-in-the-Blank: Sentences")
         fp.write(response_text)
+        fp.write('----------------------------')

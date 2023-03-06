@@ -3,8 +3,13 @@ from tkinter import *
 
 from env_variable import OPENAI_API_KEY
 from word_lists import *
-from fill_in_the_blank_individual_sentences import *
 from build_chosen_word_str import *
+
+from fill_in_the_blank_individual_sentences import *
+from fill_in_the_blank_short_story import *
+from questions_with_vocab_answers import *
+from scrambled_sentences import *
+from words_to_picture import *
 
 class WS_builder:
     def __init__(self, master):
@@ -176,7 +181,6 @@ class WS_builder:
         self.activity_listbox.insert(1, " Fill-in-the-blank: Sentences")
         self.activity_listbox.insert(1, " Fill-in-the-blank: Short Story")
         self.activity_listbox.insert(1, " Answer Questions with Vocab")
-        self.activity_listbox.insert(1, " Fill-in-the-blank: Sentences")
         self.activity_listbox.insert(1, " Scrambled Sentences")
         self.activity_listbox.insert(1, " Draw pictures based on words")
 
@@ -269,10 +273,24 @@ class WS_builder:
         activity_itm = self.activity_listbox.get(self.activity_listbox.curselection())
         self.activity_var.set(activity_itm)
 
-        # get word str for selected unit/lesson and call to API with selected activity
+        # get word str for selected unit/lesson
         chosen_word_str = build_chosen_word_str(unit_num, lesson_num)
-        fill_in_the_blank_individual_sentences(OPENAI_API_KEY, chosen_word_str)
 
+        # get function with prompt needed for chosen activity
+        def selected_activity_build(activity_chosen):
+            if activity_chosen == ' Fill-in-the-blank: Sentences':
+                fill_in_the_blank_individual_sentences(OPENAI_API_KEY, chosen_word_str)
+            elif activity_chosen == ' Fill-in-the-blank: Short Story':
+                fill_in_the_blank_short_story(OPENAI_API_KEY, chosen_word_str)
+            elif activity_chosen == ' Answer Questions with Vocab':
+                questions_with_vocab_answers(OPENAI_API_KEY, chosen_word_str)
+            elif activity_chosen == ' Scrambled Sentences':
+                scrambled_sentences(OPENAI_API_KEY, chosen_word_str)
+            elif activity_chosen == ' Draw pictures based on words':
+                words_to_picture(OPENAI_API_KEY, chosen_word_str)
+
+        # call function that makes API call with chosen word str & activity
+        selected_activity_build(activity_itm)
 
     # def call_creation_function(self):
     #     fill_in_the_blank_individual_sentences(OPENAI_API_KEY, (', '.join(l2_u1_l1_list)))
