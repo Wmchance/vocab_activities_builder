@@ -17,7 +17,7 @@ class WS_builder:
         self.mainframe = tkinter.Frame(self.master, bg='white')
         self.mainframe.pack(fill=tkinter.BOTH, expand=True)
 
-        # build all the parts of the apps display
+        # build all the parts of the apps display comment 
         self.build_grid()
         self.build_banner()
         self.build_instructions()
@@ -38,6 +38,7 @@ class WS_builder:
         self.mainframe.rowconfigure(5, weight=0)
         self.mainframe.rowconfigure(6, weight=0)
 
+    # Not needed now, but will leave it incase vars are needed later
     def vars(self):
         self.unit_var = StringVar()
         self.lesson_var = StringVar()
