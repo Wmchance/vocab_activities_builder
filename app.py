@@ -17,7 +17,7 @@ class WS_builder:
         self.build_instructions()
         self.build_listbox_labels()
         self.build_listboxes()
-        self.build_create_labels()
+        self.build_file_name()
         self.build_create_section()
         self.vars()
         self.display_row()
@@ -137,18 +137,18 @@ class WS_builder:
             exportselection=False, # allows for 1 selection from each listbox to be highlighted
             height=5
         )
-        self.unit_listbox.insert(1, "Unit 1")
-        self.unit_listbox.insert(2, "Unit 2")
-        self.unit_listbox.insert(3, "Unit 3")
-        self.unit_listbox.insert(4, "Unit 4")
-        self.unit_listbox.insert(5, "Unit 5")
-        self.unit_listbox.insert(6, "Unit 6")
-        self.unit_listbox.insert(7, "Unit 7")
-        self.unit_listbox.insert(8, "Unit 8")
-        self.unit_listbox.insert(9, "Unit 9")
-        self.unit_listbox.insert(10, "Unit 10")
-        self.unit_listbox.insert(11, "Unit 11")
-        self.unit_listbox.insert(12, "Unit 12")
+        self.unit_listbox.insert(1, " Unit 1")
+        self.unit_listbox.insert(2, " Unit 2")
+        self.unit_listbox.insert(3, " Unit 3")
+        self.unit_listbox.insert(4, " Unit 4")
+        self.unit_listbox.insert(5, " Unit 5")
+        self.unit_listbox.insert(6, " Unit 6")
+        self.unit_listbox.insert(7, " Unit 7")
+        self.unit_listbox.insert(8, " Unit 8")
+        self.unit_listbox.insert(9, " Unit 9")
+        self.unit_listbox.insert(10, " Unit 10")
+        self.unit_listbox.insert(11, " Unit 11")
+        self.unit_listbox.insert(12, " Unit 12")
 
         # make a Lesson-select listbox
         self.lesson_listbox = tkinter.Listbox(
@@ -159,10 +159,10 @@ class WS_builder:
             height=5
 
         )
-        self.lesson_listbox.insert(1, "Lesson 1")
-        self.lesson_listbox.insert(2, "Lesson 2")
-        self.lesson_listbox.insert(3, "Lesson 3")
-        self.lesson_listbox.insert(4, "Lesson 4")
+        self.lesson_listbox.insert(1, " Lesson 1")
+        self.lesson_listbox.insert(2, " Lesson 2")
+        self.lesson_listbox.insert(3, " Lesson 3")
+        self.lesson_listbox.insert(4, " Lesson 4")
 
         # make a Activity-select listbox
         self.activity_listbox = tkinter.Listbox(
@@ -172,36 +172,44 @@ class WS_builder:
             exportselection=False, # allows for 1 selection from each listbox to be highlighted
             height=5
         )
-        self.activity_listbox.insert(1, "Fill-in-the-blank: Sentences")
-        self.activity_listbox.insert(1, "Fill-in-the-blank: Short Story")
-        self.activity_listbox.insert(1, "Answer Questions with Vocab")
-        self.activity_listbox.insert(1, "Fill-in-the-blank: Sentences")
-        self.activity_listbox.insert(1, "Scrambled Sentences")
-        self.activity_listbox.insert(1, "Draw pictures based on words")
+        self.activity_listbox.insert(1, " Fill-in-the-blank: Sentences")
+        self.activity_listbox.insert(1, " Fill-in-the-blank: Short Story")
+        self.activity_listbox.insert(1, " Answer Questions with Vocab")
+        self.activity_listbox.insert(1, " Fill-in-the-blank: Sentences")
+        self.activity_listbox.insert(1, " Scrambled Sentences")
+        self.activity_listbox.insert(1, " Draw pictures based on words")
 
         # set grid location (within listboxes_frame) of listboxes
         self.unit_listbox.grid(row=0, column=0, sticky='ew')
         self.lesson_listbox.grid(row=0, column=1, sticky='ew')
         self.activity_listbox.grid(row=0, column=2, sticky='ew')
 
-    def build_create_labels(self):
+    def build_file_name(self):
         # adds a new frame for the create labels
-        create_labels_frame = tkinter.Frame(self.mainframe)
+        file_name_frame = tkinter.Frame(self.mainframe)
         # sets the location of where the new grid will go within the existing frame(mainframe)
-        create_labels_frame.grid(row=4, column=0, sticky='nsew', padx=5, pady=5)
+        file_name_frame.grid(row=4, column=0, sticky='nsew', padx=5, pady=5)
         # configure the grid for the new frame - 3 columns in the 3rd row of the mainframe
-        create_labels_frame.columnconfigure(0, weight=1)
-        create_labels_frame.columnconfigure(1, weight=1)
+        file_name_frame.columnconfigure(0, weight=1)
+        file_name_frame.columnconfigure(1, weight=1)
 
         # make a file name label
         self.file_name_label = tkinter.Label(
-            create_labels_frame, # says the frame to which it belongs, the listbox_labels_frame in this case
+            file_name_frame, # says the frame to which it belongs, the listbox_labels_frame in this case
             text='File Name:',
             font=('Helvetica, 15')
         )
 
+        # make an entry field for file name entry
+        self.create_entry = tkinter.Entry(
+            file_name_frame, # belongs to create_frame
+            # textvariable : In order to be able to retrieve the current text from your entry widget, you must set this option to an instance of the StringVar class.
+            # https://www.geeksforgeeks.org/python-tkinter-entry-widget/
+        )
+
         # set grid location within create_labels_frame
         self.file_name_label.grid(row=0, column=0, sticky='ew')
+        self.create_entry.grid(row=0, column=1, sticky='ew')
 
     
     def build_create_section(self):
@@ -215,22 +223,23 @@ class WS_builder:
         create_frame.columnconfigure(2, weight=1)
 
         # make an entry field for file name entry
-        self.create_entry = tkinter.Entry(
-            create_frame, # belongs to create_frame
-            # textvariable : In order to be able to retrieve the current text from your entry widget, you must set this option to an instance of the StringVar class.
-            # https://www.geeksforgeeks.org/python-tkinter-entry-widget/
-        )
+        # self.create_entry = tkinter.Entry(
+        #     create_frame, # belongs to create_frame
+        #     # textvariable : In order to be able to retrieve the current text from your entry widget, you must set this option to an instance of the StringVar class.
+        #     # https://www.geeksforgeeks.org/python-tkinter-entry-widget/
+        # )
         
         # make a create button
         self.create_button = tkinter.Button(
             create_frame, # belongs to create_frame
             text='Create',
+            font=('Helvetica, 20'),
             command= self.show_selected
         )
 
         # set grid location (within create_frame) of button & entry
-        self.create_button.grid(row=0, column=2, sticky='ew')
-        self.create_entry.grid(row=0, column=0, sticky='ew')
+        self.create_button.grid(row=0, column=1, sticky='ew')
+        # self.create_entry.grid(row=0, column=0, sticky='ew')
 
     # Temp row display to check vars are coming through correctly - TO BE DELETED
     def display_row(self):
