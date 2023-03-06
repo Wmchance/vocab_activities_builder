@@ -24,6 +24,9 @@ def fill_in_the_blank_individual_sentences(OPENAI_API_KEY, word_str):
 
     with open('myfile.txt', 'a') as fp:
         pass
-        fp.write("Fill-in-the-Blank: Sentences")
-        fp.write(response_text)
-        fp.write('----------------------------')
+        fp.write("Fill-in-the-Blank: Sentences\n")
+        fp.write(" \n")
+        fp.write(f'{response_text}\n')
+        fp.write(' \n')
+        fp.write('--------------------------------------------------------------------------------\n')
+        fp.write(' \n')

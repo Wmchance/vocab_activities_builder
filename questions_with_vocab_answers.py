@@ -25,4 +25,9 @@ def questions_with_vocab_answers(OPENAI_API_KEY, word_str):
 
     with open('myfile.txt', 'a') as fp:
         pass
-        fp.write(response_text)
+        fp.write("Answer with Vocab\n")
+        fp.write(" \n")
+        fp.write(f'{response_text}\n')
+        fp.write(' \n')
+        fp.write('--------------------------------------------------------------------------------\n')
+        fp.write(' \n')

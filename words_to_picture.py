@@ -21,5 +21,10 @@ def words_to_picture(OPENAI_API_KEY, word_str):
     response_text = response.choices[0]['text']
 
     with open('myfile.txt', 'a') as fp:
-            pass
-            fp.write(response_text)
+        pass
+        fp.write("Words to Pictures\n")
+        fp.write(" \n")
+        fp.write(f'{response_text}\n')
+        fp.write(' \n')
+        fp.write('--------------------------------------------------------------------------------\n')
+        fp.write(' \n')

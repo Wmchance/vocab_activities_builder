@@ -22,5 +22,10 @@ def scrambled_sentences(OPENAI_API_KEY, word_str):
     # add a word bank
 
     with open('myfile.txt', 'a') as fp:
-            pass
-            fp.write(response_text)
+        pass
+        fp.write("Scrambled Sentences\n")
+        fp.write(" \n")
+        fp.write(f'{response_text}\n')
+        fp.write(' \n')
+        fp.write('--------------------------------------------------------------------------------\n')
+        fp.write(' \n')
