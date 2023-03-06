@@ -4,6 +4,7 @@ from tkinter import *
 from env_variable import OPENAI_API_KEY
 from word_lists import *
 from fill_in_the_blank_individual_sentences import *
+from build_chosen_word_str import *
 
 class WS_builder:
     def __init__(self, master):
@@ -221,20 +222,14 @@ class WS_builder:
         create_frame.columnconfigure(0, weight=1)
         create_frame.columnconfigure(1, weight=1)
         create_frame.columnconfigure(2, weight=1)
-
-        # make an entry field for file name entry
-        # self.create_entry = tkinter.Entry(
-        #     create_frame, # belongs to create_frame
-        #     # textvariable : In order to be able to retrieve the current text from your entry widget, you must set this option to an instance of the StringVar class.
-        #     # https://www.geeksforgeeks.org/python-tkinter-entry-widget/
-        # )
         
         # make a create button
         self.create_button = tkinter.Button(
             create_frame, # belongs to create_frame
             text='Create',
             font=('Helvetica, 20'),
-            command= self.show_selected
+            command= self.build_selected
+            # command=self.call_creation_function
         )
 
         # set grid location (within create_frame) of button & entry
@@ -248,7 +243,7 @@ class WS_builder:
             self.mainframe, # says the frame to which it belongs, the mainframe in this case
             bg='white',
             fg='black',
-            textvariable= self.activity_var,
+            textvariable= self.lesson_var,
             font=('Helvetica, 15'),
             justify= 'left'
         )
@@ -259,24 +254,34 @@ class WS_builder:
             padx=5, pady=5 # sets the padding
         )
 
-    def show_selected(self):
+    def build_selected(self):
         # Unit selection var
         unit_itm = self.unit_listbox.get(self.unit_listbox.curselection())
-        self.unit_var.set(unit_itm)
+        unit_num = unit_itm.split(" ")[2]
+        self.unit_var.set(unit_num)
 
         # Lesson selection var
         lesson_itm = self.lesson_listbox.get(self.lesson_listbox.curselection())
-        self.lesson_var.set(lesson_itm)
+        lesson_num = lesson_itm.split(" ")[2]
+        self.lesson_var.set(lesson_num)
 
         # Activity selection var
         activity_itm = self.activity_listbox.get(self.activity_listbox.curselection())
         self.activity_var.set(activity_itm)
 
+        # get word str for selected unit/lesson and call to API with selected activity
+        chosen_word_str = build_chosen_word_str(unit_num, lesson_num)
+        fill_in_the_blank_individual_sentences(OPENAI_API_KEY, chosen_word_str)
+
+
+    # def call_creation_function(self):
+    #     fill_in_the_blank_individual_sentences(OPENAI_API_KEY, (', '.join(l2_u1_l1_list)))
+
 
 if __name__ == '__main__':
     
-    # csv_from_book = 'SYM_2_WordList.csv'
-    # generate_word_lists(csv_from_book)
+    csv_from_book = 'SYM_2_WordList.csv'
+    generate_word_lists(csv_from_book)
 
     # activity = fill_in_the_blank_individual_sentences(OPENAI_API_KEY, (', '.join(l2_u1_l1_list)))
     # print(l2_u1_l4_list) 
