@@ -268,7 +268,7 @@ class WS_builder:
         # Lesson selection var
         lesson_itm = self.lesson_listbox.get(self.lesson_listbox.curselection())
         lesson_num = lesson_itm.split(" ")[2]
-        self.lesson_var.set(lesson_num)
+        self.lesson_var.set(f'Lesson {lesson_num} activity created')
 
         # Activity selection var
         activity_itm = self.activity_listbox.get(self.activity_listbox.curselection())

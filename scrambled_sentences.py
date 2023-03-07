@@ -21,7 +21,7 @@ def scrambled_sentences(OPENAI_API_KEY, word_str):
     # add spaces blanks to text manually so that ChatGPT is relied on for this part
     # add a word bank
 
-    with open('myfile.txt', 'a') as fp:
+    with open('/Users/william/Desktop/worksheet.txt', 'a') as fp:
         pass
         fp.write("Scrambled Sentences\n")
         fp.write(" \n")
